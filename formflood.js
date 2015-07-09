@@ -1,4 +1,4 @@
-var FormFlood = (function() {
+var FormFlood = (function(document) {
 	"use strict";
 
 	var inputTypeLookup = {
@@ -45,7 +45,6 @@ var FormFlood = (function() {
 
         this.form = formElement;
 		this.elements = formElement.elements;
-		this.key = this.generateKey();
 		this.options = options;
 
         this.handledInputs = null;
@@ -91,23 +90,42 @@ var FormFlood = (function() {
             return input.getAttribute('name') + this.key;
         },
 
-		getDateTime: function() {},
-		getDateTimeLocal: function() {},
-		getEmail: function() {},
-		getMonth: function() {},
-		getNumber: function() {},
-		getRange: function() {},
-		getSearch: function() {},
-		getTel: function() {},
-		getTime: function() {},
-		getUrl: function() {},
-		getWeek: function() {},
+		getDateTime: function(input) {
+            return this.getText(input);
+        },
+		getDateTimeLocal: function(input) {
+            return this.getText(input);
+        },
+		getEmail: function(input) {
+            return this.getText(input);
+        },
+		getMonth: function(input) {
+            return this.getText(input);
+        },
+		getNumber: function(input) {
+            return this.getText(input);
+        },
+		getRange: function(input) {
+            return this.getText(input);
+        },
+		getSearch: function(input) {
+            return this.getText(input);
+        },
+		getTel: function(input) {
+            return this.getText(input);
+        },
+		getTime: function(input) {
+            return this.getText(input);
+        },
+		getUrl: function(input) {
+            return this.getText(input);
+        },
+		getWeek: function(input) {
+            return this.getText(input);
+        },
 
-		getRadio: function() {},
-		getCheckbox: function() {},
-
-		floodElements: function() {
-
+		fill: function() {
+            this.key = this.generateKey();
             this.handledInputs = [];
 
 			var els = this.elements,
@@ -144,6 +162,8 @@ var FormFlood = (function() {
 				}
 				methodKey = el.getAttribute('type')
 			}
+
+            return this;
 		},
 
         getGroup: function(el) {
@@ -190,12 +210,6 @@ var FormFlood = (function() {
             el.value = options[i].getAttribute('value');
 
             return this;
-        },
-
-        fill: function() {
-            this.floodElements();
-
-            return this;
         }
 	};
 
@@ -210,5 +224,48 @@ var FormFlood = (function() {
 	FormFlood.nodeNameInput = 'INPUT';
 	FormFlood.nodeNameSelect = 'SELECT';
 
+    FormFlood.menu = function() {
+        var forms = document.querySelectorAll('form'),
+            ui = document.createElement('ul'),
+            style = ui.style,
+            li,
+            a,
+            i = 0,
+            max = forms.length;
+
+        ui.className = 'panel';
+        style.opacity = 0.6;
+        style.width = '10%';
+        style.height = '300px';
+        style.right = '0';
+        style.top = '0';
+        style.position = 'absolute';
+
+        for (; i < max; i++) {
+            (function(form) {
+                li = document.createElement('li');
+                a = document.createElement('a');
+
+                a.setAttribute('href', '#');
+                a.innerHTML = 'Flood Form #' + (i + 1);
+
+                li.appendChild(a);
+                ui.appendChild(li);
+
+                a.onclick = function() {
+                    if (!this.formFlood) {
+                        this.formFlood = new FormFlood(form);
+                    }
+
+                    this.formFlood.fill();
+
+                    return false;
+                };
+            })(forms[i]);
+        }
+
+        document.querySelector('body').appendChild(ui);
+    };
+
 	return FormFlood;
-})();
+})(document);
