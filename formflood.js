@@ -264,8 +264,9 @@ var FormFlood = (function(document) {
     /**
      *
      * @param {HTMLElement} [parent]
+     * @param {Object} [settings]
      */
-    FormFlood.menu = function(parent) {
+    FormFlood.menu = function(parent, settings) {
         var forms = document.querySelectorAll('form'),
             ui = document.createElement('ul'),
             style = ui.style,
@@ -295,7 +296,7 @@ var FormFlood = (function(document) {
 
                 a.onclick = function() {
                     if (!this.formFlood) {
-                        this.formFlood = new FormFlood(form);
+                        this.formFlood = new FormFlood(form, settings);
                     }
 
 	                try {
