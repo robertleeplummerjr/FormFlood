@@ -131,7 +131,7 @@ var FormFlood = (function(document) {
             return this.getText(input);
         },
 		getUrl: function(input) {
-            return this.getText(input);
+            return 'http://www.' + this.getText(input) + '.com';
         },
 		getWeek: function(input) {
             return this.getText(input);
