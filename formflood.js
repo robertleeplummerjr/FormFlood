@@ -89,13 +89,13 @@ var FormFlood = (function(document) {
 		},
 
         getText: function(input) {
-            return input.getAttribute('name') + this.key;
+            return (input.getAttribute('name') || input.className.replace(' ', '')) + this.key;
         },
         getHidden: function(input) {
-            return input.getAttribute('name') + this.key;
+            return (input.getAttribute('name') || input.className.replace(' ', '')) + this.key;
         },
         getPassword: function(input) {
-            return input.getAttribute('name') + this.key;
+            return (input.getAttribute('name') || input.className.replace(' ', '')) + this.key;
         },
 
 		getDateTime: function(input) {
@@ -167,6 +167,9 @@ var FormFlood = (function(document) {
 					case FormFlood.nodeNameSelect:
 						this.handleSelect(el);
 						break;
+					case FormFlood.nodeNameTextArea:
+						this.handleTextArea(el);
+						break;
 				}
 				methodKey = el.getAttribute('type')
 			}
@@ -218,7 +221,11 @@ var FormFlood = (function(document) {
             el.value = options[i].getAttribute('value');
 
             return this;
-        }
+        },
+		handleTextArea: function(el) {
+			el.value = this.getText(el);
+			return this;
+		}
 	};
 
 	FormFlood.defaultOptions = {
@@ -231,6 +238,7 @@ var FormFlood = (function(document) {
 	FormFlood.typeRadio = 'radio';
 	FormFlood.nodeNameInput = 'INPUT';
 	FormFlood.nodeNameSelect = 'SELECT';
+	FormFlood.nodeNameTextArea = 'TEXTAREA';
 
     /**
      *
