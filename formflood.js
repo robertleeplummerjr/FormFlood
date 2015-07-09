@@ -42,6 +42,11 @@ var FormFlood = (function(document) {
 			var err = new Error(e);
 			err.element = err;
 			console.log(err);
+		},
+		change = function(el) {
+			var event = document.createEvent('HTMLEvents');
+			event.initEvent('change', true, false);
+			el.dispatchEvent(event);
 		};
 
 	function FormFlood(formElement, options) {
@@ -194,22 +199,31 @@ var FormFlood = (function(document) {
                 value = getMethod.call(this, el);
 
             el.value = value;
+			change(el);
 
             return this;
         },
 		handleRadios: function(els) {
-            els[
+            var el = els[
                 randomFromIndex(els)
-            ].checked = true;
+            ];
+
+			if (el) {
+				el.checked = true;
+				change(el);
+			}
 
             return this;
         },
 		handleCheckboxes: function (els) {
             var i = 0,
-                max = els.length;
+                max = els.length,
+	            el;
 
             for(; i < max; i++) {
-                els[i].checked = randomTrue();
+	            el = els[i];
+                el.checked = randomTrue();
+	            change(el);
             }
 
             return this;
@@ -219,11 +233,13 @@ var FormFlood = (function(document) {
                 i = randomFromIndex(options);
 
             el.value = options[i].getAttribute('value');
+			change(el);
 
             return this;
         },
 		handleTextArea: function(el) {
 			el.value = this.getText(el);
+			change(el);
 			return this;
 		}
 	};
