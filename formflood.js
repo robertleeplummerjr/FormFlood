@@ -269,7 +269,11 @@ var FormFlood = (function(document) {
                         this.formFlood = new FormFlood(form);
                     }
 
-                    this.formFlood.fill();
+	                try {
+		                this.formFlood.fill();
+	                } catch(e) {
+		                console.log(e);
+	                }
 
                     return false;
                 };
