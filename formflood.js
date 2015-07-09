@@ -281,6 +281,7 @@ var FormFlood = (function(document) {
         ui.className = 'panel';
         style.opacity = 0.6;
         style.width = '10%';
+        style.minWidth = '150px';
         style.height = '300px';
         style.right = '0';
         style.top = '0';
