@@ -265,6 +265,13 @@ var FormFlood = (function(document) {
 
                     return false;
                 };
+	            a.onmouseover = function() {
+		            form.style.transition = form.style['-webkit-transition'] = 'all 0.3s linear';
+		            form.style.boxShadow = '0px 5px 20px #888888';
+	            };
+	            a.onmouseout = function() {
+		            form.style.boxShadow = '';
+	            };
             })(forms[i]);
         }
 
