@@ -49,16 +49,16 @@ var FormFlood = (function(document) {
 			el.dispatchEvent(event);
 		};
 
-	function FormFlood(formElement, options) {
-        options = options || {};
+	function FormFlood(formElement, settings) {
+		settings = settings || {};
 		var i;
 		for (i in FormFlood.defaultOptions) if (FormFlood.defaultOptions.hasOwnProperty(i)) {
-			options[i] = options[i] !== undefined ? options[i] : FormFlood.defaultOptions[i];
+			settings[i] = settings[i] !== undefined ? settings[i] : FormFlood.defaultOptions[i];
 		}
 
         this.form = formElement;
 		this.elements = formElement.elements;
-		this.options = options;
+		this.settings = settings;
 
         this.handledInputs = null;
 	}
@@ -85,7 +85,7 @@ var FormFlood = (function(document) {
 
 			var randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 
-			switch (this.options.dateFormat) {
+			switch (this.settings.dateFormat) {
 				case FormFlood.dateFormatUnix:
                     console.log(randomDate);
 					return Math.round(randomDate / 1000);
@@ -141,12 +141,16 @@ var FormFlood = (function(document) {
             this.key = this.generateKey();
             this.handledInputs = [];
 
-			var els = this.elements,
+			var settings = this.settings,
+				els = this.elements,
 				i = 0,
 				max = els.length,
 				el,
 				type,
 				methodKey;
+
+			settings.beforeFill(this);
+
 			for(; i < max; i++) {
 				el = els[i];
 
@@ -158,7 +162,7 @@ var FormFlood = (function(document) {
 					case FormFlood.nodeNameInput:
 						type = (el.getAttribute('type') || '').toLowerCase();
 
-                        if (this.options.ignoreType.indexOf(type) > -1) continue;
+                        if (this.settings.ignoreType.indexOf(type) > -1) continue;
 
 						if (type === FormFlood.typeCheckbox) {
 							this.handleCheckboxes(this.getGroup(el));
@@ -246,7 +250,8 @@ var FormFlood = (function(document) {
 
 	FormFlood.defaultOptions = {
 		dateFormat: 'unix',
-        ignoreType: 'file'
+        ignoreType: 'file',
+		beforeFill: function() {}
 	};
 
 	FormFlood.dateFormatUnix = 'unix';
