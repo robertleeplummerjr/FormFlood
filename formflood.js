@@ -105,7 +105,7 @@ var FormFlood = (function(document) {
             return this.getText(input);
         },
 		getEmail: function(input) {
-            return this.getText(input);
+            return this.getText(input) + '@' + 'www.com';
         },
 		getMonth: function(input) {
             return this.getText(input);
