@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>FormFlood</title>
+</head>
+<body>
+<form id="form">
+    <div class="form-group">
+        <label>
+            <span>username:</span>
+            <input type="text" name="username">
+        </label>
+    </div>
+    <div class="form-group">
+        <label>
+            <span>password:</span>
+            <input type="password" name="password">
+        </label>
+    </div>
+    <div class="form-group">
+        <label>
+            <span>file:</span>
+            <input type="file" name="file">
+        </label>
+    </div>
+    <div class="form-group">
+        <label>
+            <span>date:</span>
+            <input type="date" name="date">
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>
+            <span>radio:</span>
+            <input type="radio" name="radio">
+        </label>
+        <label>
+            <span>radio:</span>
+            <input type="radio" name="radio">
+        </label>
+        <label>
+            <span>radio:</span>
+            <input type="radio" name="radio">
+        </label>
+        <label>
+            <span>radio:</span>
+            <input type="radio" name="radio">
+        </label>
+        <label>
+            <span>radio:</span>
+            <input type="radio" name="radio">
+        </label>
+        <label>
+            <span>radio:</span>
+            <input type="radio" name="radio">
+        </label>
+        <label>
+            <span>radio:</span>
+            <input type="radio" name="radio">
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>
+            <span>checkbox:</span>
+            <input type="checkbox" name="checkbox">
+        </label>
+        <label>
+            <span>checkbox:</span>
+            <input type="checkbox" name="checkbox">
+        </label>
+        <label>
+            <span>checkbox:</span>
+            <input type="checkbox" name="checkbox">
+        </label>
+        <label>
+            <span>checkbox:</span>
+            <input type="checkbox" name="checkbox">
+        </label>
+        <label>
+            <span>checkbox:</span>
+            <input type="checkbox" name="checkbox">
+        </label>
+        <label>
+            <span>checkbox:</span>
+            <input type="checkbox" name="checkbox">
+        </label>
+        <label>
+            <span>checkbox:</span>
+            <input type="checkbox" name="checkbox">
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>
+            <span>select:</span>
+            <select name="select">
+                <option value="">Empty</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+        </label>
+    </div>
+</form>
+</body>
+<script src="formflood.js"></script>
+<script>
+var form = document.getElementById('form'),
+    f = (new FormFlood(form))
+            .fill();
+</script>
+</html>
