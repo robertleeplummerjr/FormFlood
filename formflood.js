@@ -224,7 +224,11 @@ var FormFlood = (function(document) {
 	FormFlood.nodeNameInput = 'INPUT';
 	FormFlood.nodeNameSelect = 'SELECT';
 
-    FormFlood.menu = function() {
+    /**
+     *
+     * @param {HTMLElement} [parent]
+     */
+    FormFlood.menu = function(parent) {
         var forms = document.querySelectorAll('form'),
             ui = document.createElement('ul'),
             style = ui.style,
@@ -264,7 +268,11 @@ var FormFlood = (function(document) {
             })(forms[i]);
         }
 
-        document.querySelector('body').appendChild(ui);
+        if (parent) {
+            parent.appendChild(ui);
+        } else {
+            document.querySelector('body').appendChild(ui);
+        }
     };
 
 	return FormFlood;
