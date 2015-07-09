@@ -27,6 +27,9 @@ var FormFlood = (function(document) {
             'checkbox': 'Checkbox'
         },
         inputGroup = function(el, type, name) {
+	        if (!type) throwWarning(el, 'no type set');
+	        if (!name) throwWarning(el, 'no name set');
+
             return el.querySelectorAll('[type="' + type + '"][name="' + name + '"]');
         },
         randomFromIndex = function(els) {
@@ -34,7 +37,12 @@ var FormFlood = (function(document) {
         },
         randomTrue = function() {
             return Math.round(Math.random() * 1) === 1;
-        };
+        },
+		throwWarning = function(el, e) {
+			var err = new Error(e);
+			err.element = err;
+			console.log(err);
+		};
 
 	function FormFlood(formElement, options) {
         options = options || {};
