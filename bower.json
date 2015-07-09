@@ -1,0 +1,23 @@
+{
+  "name": "FormFlood",
+  "version": "0.0.0",
+  "homepage": "https://github.com/robertleeplummerjr/FormFlood",
+  "authors": [
+    "Robert Plummer <RobertLeePlummerJr@gmail.com>"
+  ],
+  "description": "A form testing script, autofills with random data",
+  "main": "formflood.js",
+  "keywords": [
+    "form",
+    "fill",
+    "test"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
