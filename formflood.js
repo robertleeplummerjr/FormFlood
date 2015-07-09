@@ -183,6 +183,8 @@ var FormFlood = (function(document) {
 				methodKey = el.getAttribute('type')
 			}
 
+			settings.afterFill(this);
+
             return this;
 		},
 
@@ -251,7 +253,8 @@ var FormFlood = (function(document) {
 	FormFlood.defaultOptions = {
 		dateFormat: 'unix',
         ignoreType: 'file',
-		beforeFill: function() {}
+		beforeFill: function() {},
+		afterFill: function() {}
 	};
 
 	FormFlood.dateFormatUnix = 'unix';
