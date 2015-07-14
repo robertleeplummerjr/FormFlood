@@ -44,9 +44,14 @@ var FormFlood = (function(document) {
 			console.log(err);
 		},
 		change = function(el) {
-			var event = document.createEvent('HTMLEvents');
-			event.initEvent('change', true, false);
-			el.dispatchEvent(event);
+			var change = document.createEvent('HTMLEvents'),
+				input = document.createEvent('HTMLEvents');
+
+			change.initEvent('change', true, false);
+			input.initEvent('input', true, false);
+
+			el.dispatchEvent(change);
+			el.dispatchEvent(input);
 		};
 
 	function FormFlood(formElement, settings) {
